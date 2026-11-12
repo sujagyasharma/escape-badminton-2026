@@ -35,7 +35,7 @@ open_now = bool(FORM_URL)
 sub1('<li><h3>Register</h3><p class="muted">Online and paper registration forms will be shared soon in the WhatsApp group.</p><span class="pill status">Coming soon</span></li>',
      '<li><h3>Register</h3><p class="muted">Fill in one form per player. For a doubles pair or a couple, one player fills in the form for both. '
      'You can enter at most 2 categories, plus Couples. '
-     'Last date: 17 Nov for Under-10, Under-14 and Couples; 25 Nov for Under-18, Men, Women, Mixed and 60+.</p>'
+     'Last date: 17 Nov for Under-10, Under-14 and Couples; 25 Nov for Under-18, Men, Women, Mixed Doubles and 60+.</p>'
      f'<span class="pill status">{"Open now" if open_now else "Opening soon"}</span></li>')
 
 if open_now:
