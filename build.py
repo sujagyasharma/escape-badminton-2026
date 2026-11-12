@@ -27,8 +27,9 @@ def sub1(old, new):
 # Hero: point people at registration.
 sub1('Registration forms, online and on paper, will be shared soon.',
      'Register online or on paper. See Registration below.')
+HERO_REGISTER = (f'href="{FORM_URL}" target="_blank" rel="noopener"' if FORM_URL else 'href="#register"')
 sub1('<div class="row" style="justify-content:center">\n            <a class="btn light"',
-     '<div class="row" style="justify-content:center">\n            <a class="btn sun" href="#register">Register</a>\n            <a class="btn light"')
+     f'<div class="row" style="justify-content:center">\n            <a class="btn sun" {HERO_REGISTER}>Register</a>\n            <a class="btn light"')
 
 # Registration steps + form area.
 open_now = bool(FORM_URL)
@@ -38,18 +39,20 @@ sub1('<li><h3>Register</h3><p class="muted">Online and paper registration forms 
      'Last date: 17 Nov for Under-10, Under-14 and Couples; 25 Nov for Under-18, Men, Women, Mixed Doubles and 60+.</p>'
      f'<span class="pill status">{"Open now" if open_now else "Opening soon"}</span></li>')
 
+PAPER_NOTE = ('<p class="muted small">Paper form: print it, fill it in, and send a clear photo of it to the admin in the '
+              '<a href="#join">tournament WhatsApp group</a> by the last date for your category '
+              '(17 Nov for Under-10, Under-14 and Couples; 25 Nov for all other categories).</p>')
 if open_now:
-    embed = FORM_URL.split("?")[0] + "?embedded=true"
     form_area = f'''
       <div class="formbox" id="form">
         <div class="formhead">
           <h3>Registration form</h3>
           <div class="row">
-            <a class="btn wa" href="{FORM_URL}" target="_blank" rel="noopener">Open the form in a new tab</a>
-            <a class="btn ghost" href="paper-registration-form.pdf" target="_blank" rel="noopener">Paper form (PDF)</a>
+            <a class="btn wa" href="{FORM_URL}" target="_blank" rel="noopener">Fill the form online</a>
+            <a class="btn ghost" href="paper-registration-form.pdf" download>Download the paper form (PDF)</a>
           </div>
+          {PAPER_NOTE}
         </div>
-        <iframe src="{embed}" title="Escape Badminton Tournament 2026 registration form" loading="lazy">Loading…</iframe>
       </div>'''
 else:
     form_area = '''
@@ -70,8 +73,6 @@ extra_css = '''
 /* registration form */
 .formbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:clamp(16px,3vw,24px);display:grid;gap:16px;min-width:0}
 .formhead{display:grid;gap:10px}
-.formbox iframe{display:block;width:100%;height:2300px;border:0;border-radius:8px;background:#fff}
-@media (max-width:640px){.formbox iframe{height:2800px}}
 '''
 preamble = preamble.replace("</style>", extra_css + "</style>", 1)
 
