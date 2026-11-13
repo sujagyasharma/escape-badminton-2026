@@ -42,6 +42,8 @@ sub1('<li><h3>Register</h3><p class="muted">Online and paper registration forms 
 PAPER_NOTE = ('<p class="muted small">Paper form: print it, fill it in, and send a clear photo of it to the admin in the '
               '<a href="#join">tournament WhatsApp group</a> by the last date for your category '
               '(17 Nov for Under-10, Under-14 and Couples; 25 Nov for all other categories).</p>')
+CONTACT_NOTE = ('<p class="muted small">For any clarifications contact S.N. Khanna - '
+                '<a href="tel:+919311677702">9311677702</a></p>')
 if open_now:
     form_area = f'''
       <div class="formbox" id="form">
@@ -52,6 +54,7 @@ if open_now:
             <a class="btn ghost" href="paper-registration-form.pdf" download>Download the paper form (PDF)</a>
           </div>
           {PAPER_NOTE}
+          {CONTACT_NOTE}
         </div>
       </div>'''
 else:
@@ -63,6 +66,7 @@ else:
           <div class="row">
             <a class="btn ghost" href="paper-registration-form.pdf" target="_blank" rel="noopener">Paper form (PDF)</a>
           </div>
+          ''' + CONTACT_NOTE + '''
         </div>
       </div>'''
 sub1('''<span class="pill status">From 21 Nov</span></li>
